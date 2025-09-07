@@ -1,0 +1,9 @@
+/home/danial/Documents/program/PetShopV2/build/Desktop-Debug/CMakeFiles/PetShopV2.dir
+/home/danial/Documents/program/PetShopV2/build/Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/danial/Documents/program/PetShopV2/build/Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/danial/Documents/program/PetShopV2/build/Desktop-Debug/CMakeFiles/list_install_components.dir
+/home/danial/Documents/program/PetShopV2/build/Desktop-Debug/CMakeFiles/install.dir
+/home/danial/Documents/program/PetShopV2/build/Desktop-Debug/CMakeFiles/install/local.dir
+/home/danial/Documents/program/PetShopV2/build/Desktop-Debug/CMakeFiles/install/strip.dir
+/home/danial/Documents/program/PetShopV2/build/Desktop-Debug/CMakeFiles/PetShopV2_autogen_timestamp_deps.dir
+/home/danial/Documents/program/PetShopV2/build/Desktop-Debug/CMakeFiles/PetShopV2_autogen.dir
