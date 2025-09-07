@@ -1,0 +1,1 @@
+Animal: Dog | Price: 300 | Money you had: 300
