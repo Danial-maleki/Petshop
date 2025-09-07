@@ -8,5 +8,5 @@ Dog::Dog()
 
 QString Dog::sound() const
 {
-    return QString::fromUtf8("هاپ");
+    return QString::fromUtf8("bark");
 }
