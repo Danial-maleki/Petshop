@@ -8,5 +8,5 @@ Chicken::Chicken()
 
 QString Chicken::sound() const
 {
-    return QString::fromUtf8("قدقد");
+    return QString::fromUtf8("Chicken sound");
 }
