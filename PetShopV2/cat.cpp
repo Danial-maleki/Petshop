@@ -2,11 +2,11 @@
 #include <QString>
 
 Cat::Cat()
-    : Animal("Cat", 200)      // نام و قیمت
+    : Animal("Cat", 200)    
 {
 }
 
 QString Cat::sound() const
 {
-    return QString::fromUtf8("میو");
+    return QString::fromUtf8("mewo");
 }
