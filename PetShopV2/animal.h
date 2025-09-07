@@ -12,7 +12,6 @@ public:
     QString getName() const;
     int getPrice() const;
 
-    // pure virtual: هر حیوان باید این رو پیاده‌سازی کنه
     virtual QString sound() const = 0;
 
 private:
