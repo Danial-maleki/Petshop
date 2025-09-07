@@ -14,7 +14,7 @@ public:
     void addAnimal(Animal* animal);
     void showMenu() const;
     void suggestPurchases(int money) const;
-    void buy(int choice) const; // choice: شماره از 1 تا n
+    void buy(int choice) const; 
 
 private:
     QList<Animal*> m_animals;
