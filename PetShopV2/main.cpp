@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     animals.append(new Dog());
     animals.append(new Chicken());
 
-
+    qInfo()<<"testing is git working or not";
     QFile file("purchases.txt");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     qInfo()<<"Pet Shop Menu";
     for (int i=0;i<animals.size();++i)
     {
-        qInfo()<<(i+1)<<animals[i]->getName()<< "Price:"<<animals[i]->getPrice();
+        qInfo()<<(i+1)<<animals[i]->getName()<<"Price:"<<animals[i]->getPrice();
     }
 
 
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     cin>>money;
 
 
-    qInfo()<<"With"<<money<<"you can buy:";
+    qInfo()<<"With"<<money<<"can buy:";
     for (int i=0;i<animals.size();++i)
     {
         if (money>=animals[i]->getPrice())
