@@ -17,11 +17,13 @@ public:
 ////////////////////////////////////////////////////
     QString getName() const;
     int getPrice() const;
-///////////////////////////////////////
+///////////////////////////////////////////////////
     static bool logging;
     static QString filename;
     static void attach();
     static void handler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
+
+
 private:
     QString m_name;
     int m_price;
