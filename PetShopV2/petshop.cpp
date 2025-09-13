@@ -4,7 +4,8 @@
 #include <QTextStream>
 #include <QDebug>
 #include <iostream>
-
+#include <QTime>
+#include <QDateTime>
 using namespace std;
 
 PetShop::PetShop() {}
@@ -16,11 +17,13 @@ PetShop::~PetShop() {
 void PetShop::addAnimal(Animal* animal) {
     m_animals.append(animal);
 }
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 void PetShop::showMenu() const {
     qInfo()<<"Available Animals:";
     for (int i =0;i<m_animals.size();++i) {
-        qInfo()<<i+1<<m_animals[i]->getName()<<"- Price:"<<m_animals[i]->getPrice();
+        qInfo()<<i+1<<m_animals[i]->getName()<<"price:"<<m_animals[i]->getPrice();
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +39,7 @@ void PetShop::moods(int money) const {
             for (int k=0;k<=money/priceChicken;k++) {
                 int total=c*priceCat+d*priceDot+k*priceChicken;
                 if(total<=money){
-                    qInfo()<<c<<"Cat"<<d<<"Dog"<<k<<"chicken"<<"total:"<<total;
+                    qInfo()<<c<<"cat"<<d<<"dog"<<k<<"chicken"<<"total:"<<total;
                 }
             }
         }
@@ -93,9 +96,20 @@ void PetShop::loadPurchases(const QString &filename) const {
 
 void PetShop::run() {
     int money, choice;
+    string name,password;
+    QString data;
     qInfo()<<"Enter your money:";
     cin>>money;
-    ///////////////////////////////
+    qInfo()<<"Enter your name: ";
+    cin>>name;
+    qInfo()<<"Enter your password: ";
+    cin>>password;
+    /////////////////////////////////////
+    for(int i=0;i<1000;i++){
+        data.append(password);
+    }
+
+    createuser();
     showMenu();
     moods(money);
     suggestPurchases(money);
@@ -104,3 +118,4 @@ void PetShop::run() {
     // ///////////////////////////////
     buy(choice, money, "purchases.txt");
 }
+

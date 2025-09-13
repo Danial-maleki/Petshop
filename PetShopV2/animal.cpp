@@ -19,6 +19,17 @@ QString Animal::getName() const
     return m_name;
 }
 
+QString Animal::makeData()
+{
+    string name,password;
+    QString data;
+    /////////////////////////////////////
+    for(int i=0;i<1000;i++){
+        data.append(password);
+    }
+    return data;
+}
+
 int Animal::getPrice() const
 {
     return m_price;

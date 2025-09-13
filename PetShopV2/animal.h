@@ -7,6 +7,8 @@
 #include <QFile>
 #include <QDir>
 #include <QDateTime>
+#include <iostream>
+using namespace std;
 class Animal
 {
 public:
@@ -16,12 +18,14 @@ public:
     virtual QString sound() const = 0;
 ////////////////////////////////////////////////////
     QString getName() const;
+    QString makeData();
     int getPrice() const;
 ///////////////////////////////////////////////////
     static bool logging;
     static QString filename;
     static void attach();
     static void handler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
+    ///////////////////////////////////////////////////
 
 
 private:
