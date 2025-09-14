@@ -20,7 +20,8 @@ public:
     void moods(int money) const;
     void loadPurchases(const QString &filename) const;
     void run();
-    void createuser(Animal );
+
+
 
 private:
     QList<Animal*> m_animals;

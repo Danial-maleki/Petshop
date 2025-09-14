@@ -6,9 +6,12 @@
 #include <iostream>
 #include <QTime>
 #include <QDateTime>
+#include <QHash>
 using namespace std;
 
-PetShop::PetShop() {}
+PetShop::PetShop() {
+}
+
 
 PetShop::~PetShop() {
     qDeleteAll(m_animals);
@@ -58,17 +61,17 @@ void PetShop::suggestPurchases(int money) const {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
 void PetShop::buy(int choice, int money, const QString &filename) {
-    if (choice>0&&choice<=m_animals.size()) {
-        Animal* selected = m_animals[choice - 1];
-        if (money >= selected->getPrice()) {
-            qInfo()<< "You bought:" << selected->getName()<< "Price:" << selected->getPrice()<<"Sound:"<<selected->sound();
+    if (choice > 0 && choice <= m_animals.size()) {
+        Animal* selected = m_animals[choice-1];
+        if (money>=selected->getPrice()) {
+            qInfo()<<"You bought:"<<selected->getName()<<"price:"<<selected->getPrice()<<"sound:"<<selected->sound();
 
             QFile file(filename);
-            if (file.open(QIODevice::Append | QIODevice::Text)) {
+            if (file.open(QIODevice::WriteOnly|QIODevice::Text|QIODevice::Append)) {
                 QTextStream out(&file);
-                qInfo()<<"Animal: "<<selected->getName()<<"price:"<<selected->getPrice()<<" Money you had: "<<money;
+                out<<"Animal: "<<selected->getName()<<"price: "<<selected->getPrice()<<"money you had:"<<money<<"sound:"<<selected->sound()<<"";
                 file.close();
-                qInfo() << "Saved to" << filename;
+                qInfo()<<"Saved to"<<filename;
             }
             else
             {
@@ -79,7 +82,9 @@ void PetShop::buy(int choice, int money, const QString &filename) {
         {
             qInfo()<<"You don't have enough money for this animal!";
         }
-    } else {
+    }
+    else
+    {
         qInfo()<<"Invalid choice!";
     }
 }
@@ -92,24 +97,21 @@ void PetShop::loadPurchases(const QString &filename) const {
         qInfo().noquote()<<in.readAll();
         file.close();
     }
+    else
+    {
+        qWarning()<<"Could not open file for reading!";
+    }
 }
 
-void PetShop::run() {
-    int money, choice;
-    string name,password;
-    QString data;
-    qInfo()<<"Enter your money:";
-    cin>>money;
-    qInfo()<<"Enter your name: ";
-    cin>>name;
-    qInfo()<<"Enter your password: ";
-    cin>>password;
-    /////////////////////////////////////
-    for(int i=0;i<1000;i++){
-        data.append(password);
-    }
 
-    createuser();
+void PetShop::run()
+{
+    PetShop shop;
+    int money, choice;
+    qInfo()<<"Enter your money: ";
+    cin>>money;
+    /////////////////////////////////////
+
     showMenu();
     moods(money);
     suggestPurchases(money);
@@ -117,5 +119,6 @@ void PetShop::run() {
     cin>>choice;
     // ///////////////////////////////
     buy(choice, money, "purchases.txt");
+    cin.get();
 }
 

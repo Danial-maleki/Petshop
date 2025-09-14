@@ -17,8 +17,8 @@ public:
     virtual ~Animal();
     virtual QString sound() const = 0;
 ////////////////////////////////////////////////////
-    QString getName() const;
     QString makeData();
+    QString getName() const;
     int getPrice() const;
 ///////////////////////////////////////////////////
     static bool logging;
