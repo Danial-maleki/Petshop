@@ -8,12 +8,17 @@
 #include <QHash>
 #include <QCoreApplication>
 #include <QTextStream>
-class SuperUser : public QObject
+#include "user.h"
+class SuperUser : public User
 {
     Q_OBJECT
+    QString key;
 public:
+
     explicit SuperUser(QObject *parent = nullptr);
-    void superuser(const QString &filename);
+    SuperUser(QObject *parent, const QString &u, const QString &p, const QString &key);
+    void login() override;
+    void adminoptios();
 signals:
 };
 

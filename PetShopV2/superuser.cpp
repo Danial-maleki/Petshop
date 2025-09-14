@@ -1,79 +1,49 @@
 #include "superuser.h"
-using namespace std;
-SuperUser::SuperUser(QObject *parent)
-    : QObject{parent}
-{}
+#include <QTextStream>
+#include <QDebug>
 
-void SuperUser::superuser(const QString &filename)
+
+SuperUser::SuperUser(QObject *parent)
+    : User(parent)
 {
 
+}
+
+
+SuperUser::SuperUser(QObject *parent, const QString &u, const QString &p, const QString &k): User(parent), key(k)
+{
+
+}
+
+
+void SuperUser::login() {
     QTextStream qin(stdin);
-    QTextStream qout(stdout);
-    QString name, superPassword, answer, answer2, animalname;
-    int animalprice;
+    QString username;
+    QString password;
+    QString key;
 
-        qInfo()<<"Enter your name: ";
-        qin>>name;
-////////////////////////////////////////////////////////////////////////////////////////
-        qInfo()<<"Enter your password: ";
-        qin>>superPassword;
-////////////////////////////////////////////////////////////////////////////////////////
-        qInfo()<<"your name:"<<name<<"this is your password:"<<superPassword<< "is it correct (yes/no)?";
-        qin>>answer;
-////////////////////////////////////////////////////////////////////////////////////////
-        if (answer=="yes") {
-            qInfo()<<"welcome superuser:"<<name;
-////////////////////////////////////////////////////////////////////////////////////////
+    qDebug()<<"superuser login enter username:";
+    qin>>username;
+    qDebug()<<"Enter password:";
+    qin>>password;
+    qDebug()<<"enter secret key:";
+    qin>>key;
 
-                qInfo()<<name<<"your options:\n(1)create animal\n";
-                qin>>answer2;
+    if(username==username&&password==password&&key==key) {
+        qDebug()<<"superUser login successful";
+        adminoptios();
+        emit loginSuccess();
+    }
+    else
+    {
+        qDebug()<<"Login failed!";
+        emit loginFailed();
+    }
+}
 
-                if (answer2=="1") {
-                    qInfo()<<"Set your animal name:";
-                    qin>>animalname;
-
-                    qInfo()<<"Enter your animal price:";
-                    qin>>animalprice;
-
-                    qInfo()<<"Animal created:"<<animalname<<"with price:"<<animalprice;
-                }
-                else
-                {
-                    qInfo()<<"Invalid option";
-                }
-
-        }
-        else if(answer=="no")
-        {
-            qInfo()<<"your password or username is wrong try again";
-        }
-        else
-        {
-            qInfo()<<"invalid answer please type yes or no";
-            // uint basd = qHash(superPassword);
-
-        }
-        ///note:  add a file to sava all of this on that file
-        // QFile file(filename);
-        // if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        //     qWarning()<<"Failed to open file for writing: "<<filename<<"error: " << file.errorString();
-        //     return;
-        // }
-
-        // QTextStream out(&file);
-
-        // out<<"Name: "<<name<<"\n";
-        // out<<"Password: "<<superPassword<<"\n";
-        // out<<"Animalname: "<<animalname<<"\n";
-        // out<<"AnimalPrice: "<<animalprice<<"\n";
-
-        // out.flush();
-        // file.close();
-
-        // qInfo()<<"Saved to"<<filename;
-    ////////////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////////////
+void SuperUser::adminoptios()
+{
+    qDebug()<<"superUser"<<username<<"you have special access";
 }
 
 

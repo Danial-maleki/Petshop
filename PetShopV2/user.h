@@ -2,13 +2,13 @@
 #define USER_H
 
 #include <QObject>
-
-class User : public QObject
+#include "usermanagement.h"
+class User : public UserManagement
 {
     Q_OBJECT
 public:
-    explicit User(QObject *parent = nullptr);
-
+    explicit User(QObject *parent = nullptr, const QString& u = "", const QString& p = "");
+    void login() override;
 signals:
 };
 
