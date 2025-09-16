@@ -14,17 +14,18 @@ int main(int argc, char *argv[])
     QTextStream qin(stdin);
     QCoreApplication a(argc, argv);
     QString chooice;
-    QString name, password;
+    QString name, password,key;
+    qDebug()<<"Please first login to app";
     qDebug()<<"Enter username:";
     qin>>name;
     qDebug()<<"Enter password:";
     qin>>password;
-    qDebug()<<"do you whant to login as superuser or user?(U/S)";
-    qin>>chooice;
-    if(chooice.toUpper()=='S'){
-    QString key;
-    qDebug()<<"enter secret key for SuperUser:";
+    qDebug()<<"";
     qin>>key;
+    qDebug()<<"check your password"<<password<<"and username"<<name<<"is it right?(Y/N)";
+    // qDebug()<<"do you whant to login as superuser or user?(U/S)";
+    // qin>>chooice;
+    if(key==key){
     SuperUser su(nullptr, name, password, key);
     su.login();
     }

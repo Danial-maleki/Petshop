@@ -9,7 +9,7 @@ void User::login()
     QString username;
     QString Password;
 
-    qDebug()<<"user login******\nenter username:";
+    qDebug()<<"user login******enter username:";
     qin>>username;
     qDebug()<<"enter password:";
     qin>>password;
@@ -20,7 +20,7 @@ void User::login()
     }
     else
     {
-        qDebug()<<"login failed";
+        qDebug()<<"login failed your username or password is wrong";
         emit loginFailed();
     }
 }
