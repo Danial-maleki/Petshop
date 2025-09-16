@@ -1,92 +1,48 @@
 #include <QCoreApplication>
-#include <QFile>
-#include <QTextStream>
-#include <QDebug>
-#include <iostream>
-
+#include "petshop.h"
 #include "cat.h"
 #include "dog.h"
 #include "chicken.h"
-
+#include "superuser.h"
+#include "user.h"
+#include <iostream>
+#include <QTextStream>
 using namespace std;
-
 int main(int argc, char *argv[])
 {
+    SuperUser su;
+    QTextStream qin(stdin);
     QCoreApplication a(argc, argv);
-
-
-    QList<Animal*> animals;
-    animals.append(new Cat());
-    animals.append(new Dog());
-    animals.append(new Chicken());
-
-    qInfo()<<"testing is git working or not";
-    QFile file("purchases.txt");
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QTextStream in(&file);
-        qInfo()<<"Previous purchases:";
-        qInfo().noquote() << in.readAll();
-        file.close();
+    QString chooice;
+    QString name, password,key;
+    qDebug()<<"Please first login to app";
+    qDebug()<<"Enter username:";
+    qin>>name;
+    qDebug()<<"Enter password:";
+    qin>>password;
+    qDebug()<<"";
+    qin>>key;
+    qDebug()<<"check your password"<<password<<"and username"<<name<<"is it right?(Y/N)";
+    // qDebug()<<"do you whant to login as superuser or user?(U/S)";
+    // qin>>chooice;
+    if(key==key){
+    SuperUser su(nullptr, name, password, key);
+    su.login();
+    }
+    else {
+        User u(nullptr, name, password);
+        u.login();
     }
 
+    PetShop shop;
+    SuperUser superuser;
+    shop.addAnimal(new Cat());
+    shop.addAnimal(new Dog());
+    shop.addAnimal(new Chicken());
 
-    qInfo()<<"Pet Shop Menu";
-    for (int i=0;i<animals.size();++i)
-    {
-        qInfo()<<(i+1)<<animals[i]->getName()<<"Price:"<<animals[i]->getPrice();
-    }
-
-
-    int money;
-    qInfo()<<"Enter your money:";
-    cin>>money;
-
-
-    qInfo()<<"With"<<money<<"can buy:";
-    for (int i=0;i<animals.size();++i)
-    {
-        if (money>=animals[i]->getPrice())
-        {
-            qInfo()<<(i+1)<<animals[i]->getName()<<"Price:"<<animals[i]->getPrice();
-        }
-    }
-
-
-    int choice;
-    qInfo()<<"Enter the number of the animal you want to buy:";
-    cin>>choice;
-
-
-    if(choice>0&&choice<=animals.size()) {
-        Animal* selected = animals[choice-1];
-        if (money >= selected->getPrice()) {
-            qInfo()<<"You bought:"<<selected->getName()<<"Price:"<<selected->getPrice()<<"Sound:"<<selected->sound();
-
-
-            if (file.open(QIODevice::Append | QIODevice::Text)) {
-                QTextStream out(&file);
-                qInfo()<<"Animal: "<<selected->getName()<<"price:"<<selected->getPrice()<<"Money you had: "<<money;
-                file.close();
-                qInfo()<<"Saved to purchases.txt";
-            }
-            else
-            {
-                qWarning()<<"Could not open file!";
-            }
-        }
-        else
-        {
-            qInfo()<<"You don't have enough money for this animal!";
-        }
-    }
-    else
-
-    {
-        qInfo()<<"Invalid choice!";
-    }
-
-
-    qDeleteAll(animals);
-
-    return 0;
+    shop.loadPurchases("purchases.txt");
+    shop.run();
+    cin.ignore();
+    cin.get();
+    return a.exec();
 }

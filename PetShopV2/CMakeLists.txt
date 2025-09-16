@@ -7,6 +7,9 @@ find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 
 qt_standard_project_setup()
 
@@ -17,12 +20,18 @@ qt_add_executable(PetShopV2
     cat.h cat.cpp
     petshop.h petshop.cpp
     chicken.h chicken.cpp
+    user.h user.cpp
+    superuser.h superuser.cpp
+    usermanagement.h usermanagement.cpp
 )
 
 target_link_libraries(PetShopV2
     PRIVATE
         Qt::Core
 )
+target_link_libraries(PetShopV2 PRIVATE Qt6::Core)
+target_link_libraries(PetShopV2 PRIVATE Qt6::Core)
+target_link_libraries(PetShopV2 PRIVATE Qt6::Core)
 target_link_libraries(PetShopV2 PRIVATE Qt6::Core)
 target_link_libraries(PetShopV2 PRIVATE Qt6::Core)
 target_link_libraries(PetShopV2 PRIVATE Qt6::Core)

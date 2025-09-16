@@ -3,16 +3,30 @@
 
 #include <QString>
 #include <QDebug>
+#include <QObject>
+#include <QFile>
+#include <QDir>
+#include <QDateTime>
+#include <iostream>
+using namespace std;
 class Animal
 {
 public:
     Animal(const QString &name, int price);
+    // Logger(QObject *parent = nullptr);
     virtual ~Animal();
-
+    virtual QString sound() const = 0;
+////////////////////////////////////////////////////
+    QString makeData();
     QString getName() const;
     int getPrice() const;
+///////////////////////////////////////////////////
+    static bool logging;
+    static QString filename;
+    static void attach();
+    static void handler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
+    ///////////////////////////////////////////////////
 
-    virtual QString sound() const = 0;
 
 private:
     QString m_name;
